@@ -1,6 +1,7 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -11,56 +12,61 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.openclassrooms.entrevoisins.R;
-import com.openclassrooms.entrevoisins.di.DI;
-import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
-import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
+
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity.LAUNCH_SECOND_ACTIVITY;
+import static com.openclassrooms.entrevoisins.ui.neighbour_list.NeighbourDetailsActivity.BUNDLE_EXTRA_NEIGHBOUR;
 
 
-public class NeighbourFragment extends Fragment {
-
-    private NeighbourApiService mApiService;
+public class NeighbourFragment extends Fragment implements ListNeighboursInterface {
+    //-- PROPERTIES
     private List<Neighbour> mNeighbours;
     private RecyclerView mRecyclerView;
-
+    private MyNeighbourRecyclerViewAdapter myNeighbourRecyclerViewAdapter;
+    private Context context;
 
     /**
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
+    public static NeighbourFragment newInstance(List<Neighbour> neighbours) {
         NeighbourFragment fragment = new NeighbourFragment();
+
+        Bundle args = new Bundle();
+        args.putSerializable("neighbours", (Serializable) neighbours);
+        fragment.setArguments(args);
+
         return fragment;
     }
 
+    //-- VIEW LIFE CYCLE
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = DI.getNeighbourApiService();
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
+
         Context context = view.getContext();
+
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        return view;
-    }
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(Objects.requireNonNull(getContext()), DividerItemDecoration.VERTICAL));
 
-    /**
-     * Init the List of neighbours
-     */
-    private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours));
+        initList();
+
+        assert getArguments() != null;
+        mNeighbours = (List<Neighbour>) getArguments().getSerializable("neighbours");
+
+        return view;
     }
 
     @Override
@@ -69,25 +75,38 @@ public class NeighbourFragment extends Fragment {
         initList();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EventBus.getDefault().unregister(this);
-    }
-
     /**
-     * Fired if the user clicks on a delete button
-     * @param event
+     * Init the List of neighbours
      */
-    @Subscribe
-    public void onDeleteNeighbour(DeleteNeighbourEvent event) {
-        mApiService.deleteNeighbour(event.neighbour);
+    private void initList() {
+        myNeighbourRecyclerViewAdapter = new MyNeighbourRecyclerViewAdapter(mNeighbours, this);
+        mRecyclerView.setAdapter(myNeighbourRecyclerViewAdapter);
+    }
+
+    //-- METHODS
+    public void updateList(List<Neighbour> neighbours) {
+        //TODO: demander à Anas
+        mNeighbours = neighbours;
+        //mNeighbours.clear();
+        //mNeighbours.addAll(mNeighbours);
+        myNeighbourRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClickNeighbour(Neighbour neighbour) {
+        Intent intent = new Intent(getActivity(), NeighbourDetailsActivity.class);
+
+        intent.putExtra(BUNDLE_EXTRA_NEIGHBOUR, neighbour);
+
+        if (getActivity() != null)
+            getActivity().startActivityForResult(intent, LAUNCH_SECOND_ACTIVITY);
+
+    }
+
+    @Override
+    public void onDeleteNeighbour(Neighbour neighbour) {
+        mNeighbours.remove(neighbour);
         initList();
     }
+
 }

@@ -1,6 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorGray">
+
+    <FrameLayout
+        android:id="@+id/block_picture_profile"
+        android:layout_width="match_parent"
+        android:layout_height="205dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="145dp"
+            android:text="Caroline"
+            android:textColor="@color/colorWhite"
+            android:textSize="30sp" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_backspace_white_18dp" />
+
+        <ImageButton
+            android:id="@+id/favorite_image_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="355dp"
+            android:layout_marginTop="160dp"
+            android:background="@drawable/rounded_button"
+            android:src="@drawable/favorite_not_added" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/block_details_profile"
+        android:layout_width="370dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/block_picture_profile"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="300dp">
+
+        <TextView
+            android:id="@+id/user_name_details"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:text="Caroline"
+            android:textColor="@color/colorBlack"
+            android:textSize="25sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_location_black" />
+
+            <TextView
+                android:id="@+id/user_address_details"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:text="Saint pierre du mont à 5km"
+                android:textColor="@color/colorGrayBlack" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/phone_black" />
+
+            <TextView
+                android:id="@+id/user_phoneNumber_details"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:text="+33 6 86 57 90 14"
+                android:textColor="@color/colorGrayBlack" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/internet_icon" />
+
+            <TextView
+                android:id="@+id/user_website_details"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:text="www.facebook.fr/caroline"
+                android:textColor="@color/colorGrayBlack" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/block_details_profile"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="504dp">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_margin="15dp"
+            android:text="À propos de moi"
+            android:textColor="@color/colorBlack"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/user_about_me_details"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Bonjour ! Je souhaiterais faire de la marche nordique.
+            Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner ! J'aime les jeux de cartes tels la belote et le tarot..." />
+
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>
