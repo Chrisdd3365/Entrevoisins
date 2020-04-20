@@ -111,7 +111,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
     // UPDATE FAVORITE NEIGHBOURS LIST
     private void algorithm() {
-        Log.v("ff7", Boolean.toString(favoriteNeighbour.getFavorite()));
+        Log.v("im here", Boolean.toString(favoriteNeighbour.getFavorite()));
         if (favoriteNeighbour.getFavorite()) {
             if (!listFavoritesNeighbours.contains(favoriteNeighbour)) {
                 listFavoritesNeighbours.add(favoriteNeighbour);
