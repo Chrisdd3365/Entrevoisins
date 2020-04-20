@@ -14,7 +14,6 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +44,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     List<Neighbour> listFavoritesNeighbours = new ArrayList<>();
 
     // FAVORITE NEIGHBOUR
-    Neighbour favoriteNeighbour;
+    //Neighbour favoriteNeighbour;
 
     // API SERVICE
     NeighbourApiService mApiService;
@@ -98,19 +97,17 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
         if (requestCode == LAUNCH_SECOND_ACTIVITY) {
             if (resultCode == Activity.RESULT_OK) {
-                favoriteNeighbour = (Neighbour) data.getSerializableExtra("favoriteNeighbour");
+                Neighbour favoriteNeighbour = (Neighbour) data.getSerializableExtra("favoriteNeighbour");
 
-                algorithm();
+                checkFavoriteNeighbour(favoriteNeighbour, listNeighbours, listFavoritesNeighbours);
 
                 favoriteNeighbourFragment.updateList(listFavoritesNeighbours);
             }
         }
-
-
     }
 
     // UPDATE FAVORITE NEIGHBOURS LIST
-    private void algorithm() {
+    private static void checkFavoriteNeighbour(Neighbour favoriteNeighbour, List<Neighbour> listNeighbours, List<Neighbour> listFavoritesNeighbours) {
         Log.v("im here", Boolean.toString(favoriteNeighbour.getFavorite()));
         if (favoriteNeighbour.getFavorite()) {
             if (!listFavoritesNeighbours.contains(favoriteNeighbour)) {

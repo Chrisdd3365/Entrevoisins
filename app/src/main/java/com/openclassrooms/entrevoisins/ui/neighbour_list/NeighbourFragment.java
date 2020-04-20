@@ -85,10 +85,7 @@ public class NeighbourFragment extends Fragment implements ListNeighboursInterfa
 
     //-- METHODS
     public void updateList(List<Neighbour> neighbours) {
-        //TODO: demander à Anas
         mNeighbours = neighbours;
-        //mNeighbours.clear();
-        //mNeighbours.addAll(mNeighbours);
         myNeighbourRecyclerViewAdapter.notifyDataSetChanged();
     }
 

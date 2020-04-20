@@ -4,6 +4,7 @@ import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
+import android.view.View;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
@@ -19,11 +20,14 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
+import static android.support.test.espresso.matcher.ViewMatchers.Visibility.VISIBLE;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
@@ -54,9 +58,9 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_shouldNotBeEmpty() {
+        //TODO: à revoir
         // First scroll to the position that needs to be matched and click on it.
-        onView(withId(R.id.list_neighbours))
-                .check(matches(hasMinimumChildCount(1)));
+        onView(withId(R.id.list_neighbours)).check(matches(hasMinimumChildCount(1)));
     }
 
     /**
@@ -64,11 +68,13 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
+        //TODO: à revoir
         // Given: We remove the element at position 2
         onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
         // When perform a click on a delete icon
-        onView(withId(R.id.list_neighbours))
-                .perform(actionOnItemAtPosition(1, new DeleteViewAction()));
+        onView(allOf(isDisplayed(), withId(R.id.list_neighbours)))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
+        //onView(withId(R.id.list_neighbours)).perform(actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then: the number of element is 11
         onView(withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
     }
@@ -78,12 +84,11 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_onClickListener_shouldShowItemDetails() {
+        //TODO: à revoir
         // When perform a click on a item
         onView(withId(R.id.list_neighbours)).perform(actionOnItemAtPosition(0, click()));
         // Then: check if the name of the neighbour is displayed
         onView(withId(R.id.user_name)).check(matches(isDisplayed()));
     }
-
-
 
 }
