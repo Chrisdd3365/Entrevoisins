@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
@@ -42,9 +41,6 @@ public class ListNeighbourActivity extends AppCompatActivity {
     // LISTS
     List<Neighbour> listNeighbours = new ArrayList<>();
     List<Neighbour> listFavoritesNeighbours = new ArrayList<>();
-
-    // FAVORITE NEIGHBOUR
-    //Neighbour favoriteNeighbour;
 
     // API SERVICE
     NeighbourApiService mApiService;
@@ -107,8 +103,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     }
 
     // UPDATE FAVORITE NEIGHBOURS LIST
-    private static void checkFavoriteNeighbour(Neighbour favoriteNeighbour, List<Neighbour> listNeighbours, List<Neighbour> listFavoritesNeighbours) {
-        Log.v("im here", Boolean.toString(favoriteNeighbour.getFavorite()));
+    public static void checkFavoriteNeighbour(Neighbour favoriteNeighbour, List<Neighbour> listNeighbours, List<Neighbour> listFavoritesNeighbours) {
         if (favoriteNeighbour.getFavorite()) {
             if (!listFavoritesNeighbours.contains(favoriteNeighbour)) {
                 listFavoritesNeighbours.add(favoriteNeighbour);
