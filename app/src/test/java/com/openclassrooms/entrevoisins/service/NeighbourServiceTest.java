@@ -38,7 +38,7 @@ public class NeighbourServiceTest {
         service = DI.getNewInstanceApiService();
     }
 
-    //--UNIT TESTS METHODS
+    //-- UNIT TESTS METHODS
     // UNIT TESTING INIT LIST OF NEIGHBOURS
     @Test
     public void getNeighboursWithSuccess() {

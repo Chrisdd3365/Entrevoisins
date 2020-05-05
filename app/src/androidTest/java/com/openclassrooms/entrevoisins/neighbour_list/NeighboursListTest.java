@@ -98,10 +98,10 @@ public class NeighboursListTest {
         onView(withId(R.id.user_name) ).check(matches(isDisplayed() ) );
     }
 
-    @Test
     /**
      * When we add a neighbour into the favorites neighbours list, check if it displays only the neighbour set as favorite neighbour
      */
+    @Test
     public void myFavoritesNeighboursList_onClickListener_shouldShowFavoriteNeighbour() {
         // When perform a click on a item, it shows the details activity
         onView(allOf(isDisplayed(), withId(R.id.list_neighbours) ) ).perform(actionOnItemAtPosition(4, click() ) );
@@ -111,8 +111,6 @@ public class NeighboursListTest {
         onView(withId(R.id.back_button) ).perform(click() );
         // Display favorites neighbours list by clicking on the second tab item of view pager
         onView(withId(R.id.container) ).perform(swipeLeft() );
-        //TODO: demander à anas pourquoi ça marche pas ligne 116
-        //onView(allOf(isDisplayed(), withId(R.id.tabItem2) ) ).perform(click() );
         // Given: only this item is displayed into the favorites neighbours list
         onView(allOf(isDisplayed(), withId(R.id.item_list_avatar) ) ).check(matches(isDisplayed() ) );
         onView(allOf(isDisplayed(), withId(R.id.item_list_name) ) ).check(matches(isDisplayed() ) );
