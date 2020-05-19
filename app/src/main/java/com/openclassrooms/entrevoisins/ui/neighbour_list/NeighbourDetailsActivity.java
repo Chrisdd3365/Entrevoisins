@@ -84,13 +84,9 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
             favoriteImageButton = findViewById(R.id.favorite_image_button);
             // SET ON CLICK LISTENER
             favoriteImageButton.setOnClickListener(v -> {
-                if (neighbour.getFavorite()) {
-                    neighbour.setFavorite(false);
-                    favoriteImageButton.setImageDrawable(getDrawable(R.drawable.favorite_not_added));
-                } else {
-                    neighbour.setFavorite(true);
-                    favoriteImageButton.setImageDrawable(getDrawable(R.drawable.favorite_added));
-                }
+                neighbour.setFavorite(!neighbour.getFavorite());
+
+                setupFavoriteImageButtonDrawable();
             });
 
             backImageButton = findViewById(R.id.back_button);
@@ -113,7 +109,6 @@ public class NeighbourDetailsActivity extends AppCompatActivity {
         }
     }
 
-    // DISABLE BACK BUTTON ON DEVICE
     @Override
     public void onBackPressed() {
         Intent returnIntent = new Intent();

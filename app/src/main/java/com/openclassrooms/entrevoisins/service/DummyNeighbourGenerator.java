@@ -34,9 +34,12 @@ public abstract class DummyNeighbourGenerator {
             new Neighbour(12, "Ludovic", "https://i.pravatar.cc/150?u=a042581f3e39026702d", "Saint-Pierre-du-Mont ; 5km",
                     "+33 6 86 57 90 14",  "Bonjour ! Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner ! J'aime les jeux de cartes tels la belote et le tarot..", false));
 
+    public static List<Neighbour> DUMMY_FAVORITES_NEIGHBOURS = Arrays.asList();
+
     //-- METHODS
-    static List<Neighbour> generateNeighbours() {
-        return new ArrayList<>(DUMMY_NEIGHBOURS);
-    }
+    static List<Neighbour> generateNeighbours() { return new ArrayList<>(DUMMY_NEIGHBOURS); }
+
+    static List<Neighbour> generateFavoritesNeighbours() { return new ArrayList<>(DUMMY_FAVORITES_NEIGHBOURS);}
+
 
 }

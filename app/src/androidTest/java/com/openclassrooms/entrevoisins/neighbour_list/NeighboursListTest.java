@@ -4,9 +4,9 @@ import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
+import com.bumptech.glide.Glide;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
-import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.ui.neighbour_list.ListNeighbourActivity;
 import com.openclassrooms.entrevoisins.utils.DeleteViewAction;
 
@@ -14,9 +14,6 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -102,21 +99,18 @@ public class NeighboursListTest {
      */
     @Test
     public void myFavoritesNeighboursList_onClickListener_shouldShowFavoriteNeighbourIntoFavoriteList() {
-        // When perform a click on a item, it shows the details activity
+        // Given: perform a click on a item, it shows the details activity
         onView(allOf(isDisplayed(), withId(R.id.list_neighbours) ) ).perform(actionOnItemAtPosition(4, click() ) );
-        // Perform a click on favorite button
+        // When: perform a click on favorite button
         onView(withId(R.id.favorite_image_button) ).perform(click() );
         // Going back to the list neighbours activity
         onView(withId(R.id.back_button) ).perform(click() );
         // Display favorites neighbours list by clicking on the second tab item of view pager
         onView(withId(R.id.container) ).perform(swipeLeft() );
         // Only this item is displayed into the favorites neighbours list
-        onView(allOf(isDisplayed(), withId(R.id.item_list_avatar) ) ).check(matches(isDisplayed() ) );
         onView(allOf(isDisplayed(), withId(R.id.item_list_name) ) ).check(matches(isDisplayed() ) );
-        // Then: check if the name and the avatar are the expected ones
-        onView(allOf(isDisplayed(), withId(R.id.item_list_avatar) ) ).check(matches(withText(containsString(DI.getNeighbourApiService().getNeighbours().get(4).getAvatarUrl() ) ) ) );
+        // Then: check if the name is the expected one in the favorites neighbours lists
         onView(allOf(isDisplayed(), withId(R.id.item_list_name) ) ).check(matches(withText(containsString(DI.getNeighbourApiService().getNeighbours().get(4).getName() ) ) ) );
-
     }
 
 }

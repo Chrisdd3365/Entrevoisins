@@ -58,6 +58,8 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
         listNeighbours = mApiService.getNeighbours();
 
+        listFavoritesNeighbours = mApiService.getFavoritesNeighbours();
+
         setContentView(R.layout.activity_list_neighbour);
 
         ButterKnife.bind(this);

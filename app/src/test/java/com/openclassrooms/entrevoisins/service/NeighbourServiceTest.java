@@ -78,6 +78,7 @@ public class NeighbourServiceTest {
         neighbour.setFavorite(true);
 
         neighbours = service.getNeighbours();
+        favoritesNeighbours = service.getFavoritesNeighbours();
 
         checkFavoriteNeighbour(neighbour, neighbours, favoritesNeighbours);
 
@@ -91,6 +92,7 @@ public class NeighbourServiceTest {
         neighbour.setFavorite(false);
 
         neighbours = service.getNeighbours();
+        favoritesNeighbours = service.getFavoritesNeighbours();
 
         checkFavoriteNeighbour(neighbour, neighbours, favoritesNeighbours);
 
@@ -107,6 +109,7 @@ public class NeighbourServiceTest {
         neighbour2.setFavorite(true);
 
         neighbours = service.getNeighbours();
+        favoritesNeighbours = service.getFavoritesNeighbours();
 
         checkFavoriteNeighbour(neighbour1, neighbours, favoritesNeighbours);
         checkFavoriteNeighbour(neighbour2, neighbours, favoritesNeighbours);
