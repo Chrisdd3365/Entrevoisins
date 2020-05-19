@@ -99,6 +99,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
 
                 checkFavoriteNeighbour(favoriteNeighbour, listNeighbours, listFavoritesNeighbours);
 
+                neighbourFragment.updateList(listNeighbours);
                 favoriteNeighbourFragment.updateList(listFavoritesNeighbours);
             }
         }

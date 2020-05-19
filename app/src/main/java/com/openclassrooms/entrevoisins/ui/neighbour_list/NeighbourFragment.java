@@ -102,6 +102,7 @@ public class NeighbourFragment extends Fragment implements ListNeighboursInterfa
 
     @Override
     public void onDeleteNeighbour(Neighbour neighbour) {
+        neighbour.setFavorite(false);
         mNeighbours.remove(neighbour);
         initList();
     }
