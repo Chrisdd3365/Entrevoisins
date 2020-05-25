@@ -43,10 +43,16 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
         return POSITION_NONE;
     }
 
+    /**
+     * getPageTitle is called to instantiate the title for the given page.
+     * @param position
+     * @return
+     */
     @Override
     public CharSequence getPageTitle(int position) {
         return fragmentTitles.get(position);
     }
+
 
     public void addFragment(Fragment fragment, String title) {
         fragmentList.add(fragment);

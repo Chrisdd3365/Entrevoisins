@@ -90,7 +90,8 @@ public class NeighboursListTest {
         // Check if the name's text view of the neighbour is displayed in the details activity
         onView(withId(R.id.user_name) ).check(matches(isDisplayed() ) );
         // Then: check if the name of the neighbour is the expected one
-        onView(withId(R.id.user_name)).check(matches(withText(containsString(DI.getNeighbourApiService().getNeighbours().get(0).getName() ) ) ) );
+        onView(withId(R.id.user_name))
+                .check(matches(withText(containsString(DI.getNeighbourApiService().getNeighbours().get(0).getName() ) ) ) );
     }
 
     /**
@@ -108,8 +109,9 @@ public class NeighboursListTest {
         onView(withId(R.id.container) ).perform(swipeLeft() );
         // Only this item is displayed into the favorites neighbours list
         onView(allOf(isDisplayed(), withId(R.id.item_list_name) ) ).check(matches(isDisplayed() ) );
-        // Then: check if the name is the expected one in the favorites neighbours lists
-        onView(allOf(isDisplayed(), withId(R.id.item_list_name) ) ).check(matches(withText(containsString(DI.getNeighbourApiService().getNeighbours().get(4).getName() ) ) ) );
+        // Then: check if the name is the expected one in the favorites neighbours list
+        onView(allOf(isDisplayed(), withId(R.id.item_list_name) ) )
+                .check(matches(withText(containsString(DI.getNeighbourApiService().getNeighbours().get(4).getName() ) ) ) );
     }
 
 }

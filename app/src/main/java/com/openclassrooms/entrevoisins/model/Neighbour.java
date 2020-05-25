@@ -34,6 +34,10 @@ public class Neighbour implements Serializable {
      * @param id
      * @param name
      * @param avatarUrl
+     * @param address
+     * @param phoneNumber
+     * @param aboutMe
+     * @param favorite
      */
     public Neighbour(long id, String name, String avatarUrl, String address,
                      String phoneNumber, String aboutMe, Boolean favorite) {

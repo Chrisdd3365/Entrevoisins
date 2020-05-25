@@ -106,7 +106,8 @@ public class ListNeighbourActivity extends AppCompatActivity {
     }
 
     // UPDATE FAVORITE NEIGHBOURS LIST
-    public static void checkFavoriteNeighbour(Neighbour favoriteNeighbour, List<Neighbour> listNeighbours, List<Neighbour> listFavoritesNeighbours) {
+    public static void checkFavoriteNeighbour(Neighbour favoriteNeighbour, List<Neighbour> listNeighbours,
+                                              List<Neighbour> listFavoritesNeighbours) {
         if (favoriteNeighbour.getFavorite()) {
             if (!listFavoritesNeighbours.contains(favoriteNeighbour)) {
                 listFavoritesNeighbours.add(favoriteNeighbour);
